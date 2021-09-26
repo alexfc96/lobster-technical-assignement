@@ -24,6 +24,14 @@ export default class OrdersController {
 
     return response.redirect().toRoute('OrdersController.show', [params.id])
   }
+
+  public async destroy({ view, params }: HttpContextContract) {
+    const orderToDelete = await Order.findOrFail(params.id)
+    await orderToDelete.delete()
+
+    const orders = await Order.query().preload('items')
+    return await view.render('orders/index', { orders })
+  }
 }
 
 const updateOrderSchema = schema.create({

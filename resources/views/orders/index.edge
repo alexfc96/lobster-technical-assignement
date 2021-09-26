@@ -31,7 +31,10 @@
       </td>
       <td>{{order.total}}€</td>
       <td>
-        <a href="/orders/{{order.id}}">Show details</a>
+        <a href="/orders/{{order.id}}">Details</a>
+      </td>
+      <td>
+        @include('orders/show/delete-order')
       </td>
     </tr>
     @endeach
