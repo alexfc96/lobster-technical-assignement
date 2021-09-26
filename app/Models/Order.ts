@@ -23,7 +23,7 @@ export default class Order extends BaseModel {
 
   @computed()
   public get total() {
-    if (!this.items || this.items.length === 0) return null
+    if (!this.items || this.items.length === 0) return 0
     else return _.sumBy(this.items, 'price').toFixed(2)
   }
 

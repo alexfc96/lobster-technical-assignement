@@ -29,6 +29,7 @@ Route.get('/job-description', async ({ view }) => {
 })
 
 Route.get('/orders', 'OrdersController.index')
+Route.post('/orders', 'OrdersController.store')
 Route.get('/orders/:id', 'OrdersController.show')
 Route.put('/orders/:id', 'OrdersController.update')
 Route.delete('/orders/:id', 'OrdersController.destroy')

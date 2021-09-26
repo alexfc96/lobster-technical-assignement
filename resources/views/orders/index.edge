@@ -4,6 +4,10 @@
 <section class="my-6 lg:my-16 px-6 lg:px-10 mx-auto max-w-screen-xl">
   <h1 class="text-3xl font-serif">Orders</h1>
 
+  <div class="mt-4">
+    @include('orders/show/new-order')
+  </div>
+
   <div class="mt-6">
     @if(orders && orders.length > 0)
     @component('components/table')
