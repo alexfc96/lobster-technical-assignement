@@ -30,6 +30,7 @@ Route.get('/job-description', async ({ view }) => {
 
 Route.get('/orders', 'OrdersController.index')
 Route.get('/orders/:id', 'OrdersController.show')
+Route.put('/orders/:order_id', 'OrderController.update')
 
 Route.post('/orders/:order_id/items', 'OrderItemsController.store')
 Route.put('/orders/:order_id/items/:id', 'OrderItemsController.update')

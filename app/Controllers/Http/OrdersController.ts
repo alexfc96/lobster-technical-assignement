@@ -1,4 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema } from '@ioc:Adonis/Core/Validator'
 import Order from 'App/Models/Order'
 
 export default class OrdersController {
@@ -11,4 +12,22 @@ export default class OrdersController {
     const order = await Order.query().where('id', '=', params.id).preload('items').firstOrFail()
     return await view.render('orders/show/show.edge', { order })
   }
+
+  public async update({ request, response, params }: HttpContextContract) {
+    const orderData = await request.validate({ schema: updateOrderSchema })
+
+    const order = await Order.findOrFail(params.id)
+    order.customersName = orderData.customersName
+    order.customersEmail = orderData.customersEmail
+    order.customersPhone = orderData.customersPhone
+    await order.save()
+
+    return response.redirect().toRoute('OrdersController.show', [params.order_id])
+  }
 }
+
+const updateOrderSchema = schema.create({
+  customersName: schema.string(),
+  customersEmail: schema.string(),
+  customersPhone: schema.string(),
+})
