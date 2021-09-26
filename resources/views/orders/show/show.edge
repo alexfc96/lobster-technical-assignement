@@ -7,11 +7,7 @@
   <!-- Customers Info -->
   <div class="mt-6">
     <h2 class="text-xl font-serif">Customer's info</h2>
-    <div class="mt-2 px-4 lg:px-8 py-1 lg:py-2 grid grid-cols-3 border-primary-200 border rounded-lg bg-white">
-      <span>{{order.customersName}}</span>
-      <span>{{order.customersEmail}}</span>
-      <span>{{order.customersPhone}}</span>
-    </div>
+    @include('orders/show/update-customer-info')
   </div>
 
   <!-- Items -->

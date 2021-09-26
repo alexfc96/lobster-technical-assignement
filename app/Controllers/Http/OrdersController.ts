@@ -22,7 +22,7 @@ export default class OrdersController {
     order.customersPhone = orderData.customersPhone
     await order.save()
 
-    return response.redirect().toRoute('OrdersController.show', [params.order_id])
+    return response.redirect().toRoute('OrdersController.show', [params.id])
   }
 }
 
