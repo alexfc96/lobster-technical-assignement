@@ -1,10 +1,10 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import Order from 'App/Models/Order'
 export default class OrdersController {
   public async index({ view }: HttpContextContract) {
     const orders = await Order.query().preload('items')
-    return await view.render('orders/index', { orders })
+    return await view.render('orders/index', { orders, test: "123" })
   }
 
   public async show({ view, params }: HttpContextContract) {
@@ -48,12 +48,16 @@ export default class OrdersController {
 
 const storeOrderSchema = schema.create({
   customersName: schema.string(),
-  customersEmail: schema.string(),
+  customersEmail: schema.string({}, [
+    rules.email()
+  ]),
   customersPhone: schema.string(),
 })
 
 const updateOrderSchema = schema.create({
   customersName: schema.string(),
-  customersEmail: schema.string(),
+  customersEmail: schema.string({}, [
+    rules.email()
+  ]),
   customersPhone: schema.string(),
 })
